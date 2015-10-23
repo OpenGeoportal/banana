@@ -31,8 +31,8 @@ function (Settings) {
      * your banana web application.
      * @type {String}
      */
-    solr: "/solr/",
-    solr_core: "logstash_logs",
+    solr: "http://54.204.36.0:8983/solr/",
+    solr_core: "ogp",
 
     /**
      * The default Solr index to use for storing objects internal to Banana, such as 
@@ -73,6 +73,8 @@ function (Settings) {
      * @type {Array}
      */
     panel_names: [
+      'boundmap',
+      'histmap',
       'histogram',
       'map',
       'table',
