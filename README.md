@@ -1,3 +1,5 @@
+This fork of Banana has been configured as a prototype to provide dashboard analytics for OGP collections and usage.
+
 # Banana
 
 The Banana project was forked from [Kibana](https://github.com/elastic/kibana), and works with all kinds of time series (and non-time series) data stored in [Apache Solr](https://lucene.apache.org/solr/). It uses Kibana's powerful dashboard configuration capabilities, ports key panels to work with Solr, and provides significant additional capabilities, including new panels that leverage [D3.js](http://d3js.org). 
