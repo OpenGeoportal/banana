@@ -1,0 +1,15 @@
+<div ng-controller='mapfilter' ng-init="init()">
+    <!-- This solution might work well for other panels that have trouble with heights -->
+    <div style="padding-right:10px;padding-top:10px;height:{{panel.height|| row.height}};overflow:hidden">
+        <div mapfilter id='mapfilter' min-y="panel.lat_start" max-y="panel.lat_end" max-x="panel.lon_end"
+             min-x="panel.lon_start" style="height:100%"></div>
+    </div>
+    <div>
+        <span>{{panel.lon_start}}</span>
+        <span>{{panel.lat_start}}</span>
+        <span>{{panel.lon_end}}</span>
+        <span>{{panel.lat_end}}</span>
+    </div>
+
+    <div></div>
+</div>

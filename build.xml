@@ -7,7 +7,7 @@
 
     <buildnumber/>
     <target name="build-war" description="Build application as a WAR file">
-        <war destfile="${build.dir}/${name}-${build.number}.war" webxml="${src.dir}/WEB-INF/web.xml">
+        <war destfile="${build.dir}/${name}.war" webxml="${src.dir}/WEB-INF/web.xml">
             <fileset dir="${src.dir}">
                 <include name="**/*.*"/>
             </fileset>

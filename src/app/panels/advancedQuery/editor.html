@@ -1,0 +1,36 @@
+<div class="span2" ng-show="!_.isUndefined(panel.spyable)">
+    <label class="small">
+        Inspect <i class="icon-question-sign" bs-tooltip="'Allow query reveal via <i class=icon-eye-open></i>'"></i>
+    </label>
+    <input type="checkbox" ng-model="panel.spyable" ng-checked="panel.spyable">
+
+    <h6>Query Fields <i class="icon-question-sign" bs-tooltip="'Set searchable fields with boost values.'"></i></h6>
+
+    <div class="container" ng-repeat="qf in panel.queryFields">
+        <div class="kibana-row">
+            <input data-ng-model="qf.field" type="text" bs-typeahead="fields.list" class="input-large">
+            <input data-ng-model="qf.boost" type="number" step="any" class="input-mini">
+            <span class="icon-minus-sign" bs-tooltip="'Remove'" ng-click="removeQueryField($index)"/>
+            <span ng-show="$last" class="icon-plus-sign" bs-tooltip="'Add another query field.'"
+                  ng-click="newQueryField()"/>
+        </div>
+    </div>
+    <h6>Phrase Fields <i class="icon-question-sign"
+                         bs-tooltip="'Set boosts for matched phrases in the following fields.'"></i></h6>
+
+    <div class="container" ng-repeat="pf in panel.phraseFields">
+        <div class="kibana-row">
+            <input data-ng-model="pf.field" type="text" bs-typeahead="fields.list" class="input-large">
+            <input data-ng-model="pf.boost" type="number" step="any" class="input-mini">
+            <span class="icon-minus-sign" bs-tooltip="'Remove'" ng-click="removePhraseField($index)"/>
+            <span ng-show="$last" class="icon-plus-sign" bs-tooltip="'Add another phrase field.'"
+                  ng-click="newPhraseField()"/>
+        </div>
+    </div>
+
+    <div class="kibana-row">
+        <label for="slop" class="small">Phrase Slop <i class="icon-question-sign"
+                                                       bs-tooltip="'Set the maximum distance between terms matchable as a phrase.'"></i></label>
+        <input id="slop" data-ng-model="panel.phraseSlop" type="number" class="input-mini">
+    </div>
+</div>
