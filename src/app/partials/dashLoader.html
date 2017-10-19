@@ -5,7 +5,23 @@
             ng-options="c as c for c in dashboard.current.solr.core_list | orderBy:'toString()'"></select>
 </li>
 
+<!--
 <li><a  ng-show="showDropdown('home')" bs-tooltip="'Goto saved default'" data-placement="bottom" href='#/dashboard'><i class='icon-home'></i></a></li>
+-->
+
+<li class="dropdown" bs-tooltip="'Dashboards'" data-placement="bottom">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    <i class='icon-folder-open'></i>
+  </a>
+  <ul class="dropdown-menu" style="padding:10px">
+    <li><a href="" alt="OGP Holdings dashboard" title="Holdings dashboard" class="link" ng-click="openDashboard('default')"><i
+      class="icon-th-large"></i> Holdings dashboard </a></li>
+    <li><a href="" alt="OGP Usage dashboard" title="Usage dashboard" class="link" ng-click="openDashboard('ogp_usage')"><i
+      class="icon-th-large"></i> Usage dashboard </a></li>
+    <li><a href="" alt="OGP Metadata inspector" title="Metadata inspector" class="link" ng-click="openDashboard('metadata-ins')"><i
+      class="icon-th-large"></i> Metadata inspector </a></li>
+  </ul>
+</li>
 
 <!-- New menu -->
 <li class="dropdown" bs-tooltip="'New'" data-placement="bottom" ng-show="showDropdown('new')">

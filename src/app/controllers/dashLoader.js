@@ -120,6 +120,16 @@ function (angular, _, config) {
             });
         };
 
+      $scope.openDashboard = function (type) {
+        $http.get('app/dashboards/' + type + '.json').success(function (data) {
+          dashboard.dash_load(data);
+          // Reset new dashboard defaults
+          $scope.resetNewDefaults();
+        }).error(function () {
+          alertSrv.set('Error', 'Unable to load dashboard', 'error');
+        });
+      };
+
         $scope.set_default = function () {
             if (dashboard.set_default()) {
                 alertSrv.set('Local Default Set', dashboard.current.title + ' has been set as your local default', 'success', 5000);

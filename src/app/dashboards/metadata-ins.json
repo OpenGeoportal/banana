@@ -2362,12 +2362,7 @@
     "server": "http://dashboard.opengeoportal.org/solr/",
     "core_name": "ogp",
     "core_list": [
-      "banana-int",
-      "logstash_logs",
-      "logstash_logs1",
-      "logstash_logs2",
-      "ogp",
-      "posters1"
+      "ogp"
     ],
     "global_params": ""
   }

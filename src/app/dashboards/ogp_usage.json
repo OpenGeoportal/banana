@@ -403,7 +403,7 @@
       ]
     }
   ],
-  "editable": true,
+  "editable": false,
   "index": {
     "interval": "none",
     "pattern": "[logstash-]YYYY.MM.DD",
@@ -413,23 +413,23 @@
   "failover": false,
   "panel_hints": true,
   "loader": {
-    "save_gist": true,
-    "save_elasticsearch": true,
-    "save_local": true,
-    "save_default": true,
-    "save_temp": true,
-    "save_temp_ttl_enable": true,
+    "save_gist": false,
+    "save_elasticsearch": false,
+    "save_local": false,
+    "save_default": false,
+    "save_temp": false,
+    "save_temp_ttl_enable": false,
     "save_temp_ttl": "30d",
-    "load_gist": true,
-    "load_elasticsearch": true,
+    "load_gist": false,
+    "load_elasticsearch": false,
     "load_elasticsearch_size": 20,
-    "load_local": true,
+    "load_local": false,
     "hide": false,
     "dropdown_collections": false,
     "save_as_public": false
   },
   "solr": {
-    "server": "http://localhost:8983/solr/",
+    "server": "http://54.83.200.243:8983/solr/",
     "core_name": "logstash_logs",
     "core_list": [
       "logstash_logs",
@@ -438,5 +438,5 @@
     "global_params": ""
   },
   "username": "guest",
-  "home": true
+  "home": false
 }
