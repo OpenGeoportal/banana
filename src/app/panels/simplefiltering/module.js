@@ -63,6 +63,7 @@ function (angular, app, _) {
           exp$ += "<div>must not contain '{{ value | uridecode }}'.</div>";
         } else {
          //either?
+          console.log("unexpected value for mandate");
         }
       }
       return $interpolate(exp$)(f);

@@ -257,7 +257,7 @@ function (angular, app, $, _, kbn, moment, timeSeries) {
 
       // Build Solr query
       var fq = '';
-      if (filterSrv.getSolrFq() && filterSrv.getSolrFq() != '') {
+      if (filterSrv.getSolrFq() && filterSrv.getSolrFq() !== '') {
         fq = '&' + filterSrv.getSolrFq();
       }
       var time_field = filterSrv.getTimeField();

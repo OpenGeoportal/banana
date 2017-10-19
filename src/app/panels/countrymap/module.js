@@ -19,7 +19,7 @@ define([
   'jquery',
   'leaflet',
     'chroma',
-  'css!../../../vendor/leaflet/leaflet.css'
+  'css!../../../vendor/leaflet/dist/leaflet.css'
 ],
 function (angular, app, _, $, L, chroma) {
   'use strict';
@@ -27,7 +27,7 @@ function (angular, app, _, $, L, chroma) {
   var module = angular.module('kibana.panels.countrymap', []);
   app.useModule(module);
 
-  module.controller('countrymap', function($scope, $rootScope, querySrv, dashboard, filterSrv, $q) {
+  module.controller('countrymap', function($scope, $rootScope, querySrv, dashboard, filterSrv) {
     $scope.panelMeta = {
       editorTabs : [
         {title:'Queries', src:'app/partials/querySelect.html'}
@@ -143,7 +143,7 @@ function (angular, app, _, $, L, chroma) {
 
       // Build Solr query
       var fq = '';
-      if (filterSrv.getSolrFq() && filterSrv.getSolrFq() != '') {
+      if (filterSrv.getSolrFq() && filterSrv.getSolrFq() !== '') {
         fq = '&' + filterSrv.getSolrFq();
       }
       var wt_json = '&wt=json';
@@ -296,11 +296,11 @@ function (angular, app, _, $, L, chroma) {
         };
 
         scope.getScale = function(breaks){
-          return chroma.scale('Blues').padding([.2, 0]).classes(breaks);
+          return chroma.scale('Blues').padding([0.2, 0]).classes(breaks);
         };
 
         scope.addDataLayer = function () {
-          if (typeof scope.data == "undefined"){
+          if (typeof scope.data === "undefined"){
             return;
           }
 
@@ -320,8 +320,8 @@ function (angular, app, _, $, L, chroma) {
               color: '#000000',
               weight: 1,
               fillColor: getColor(feature.properties.count),
-              fillOpacity:.8
-            }
+              fillOpacity: 0.8
+            };
           }
 
           function setText(text){
@@ -365,9 +365,9 @@ function (angular, app, _, $, L, chroma) {
 
           }
 
-          function filter(feature, layer){
+          function filter(feature){
             if (feature.properties.iso in scope.data){
-              feature.properties.count = scope.data[feature.properties.iso]
+              feature.properties.count = scope.data[feature.properties.iso];
               return true;
             } else {
               return false;
@@ -407,7 +407,7 @@ function (angular, app, _, $, L, chroma) {
           }
 
           return map;
-        };
+        }
 
         render_panel();
 

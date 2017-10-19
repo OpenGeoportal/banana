@@ -1,3 +1,27 @@
+# OGP Dashboards
+This is a fork of Banana (see below) that has been modified to use as a set of dashboards to 
+view OGP collections and usage.
+
+## Data Holdings
+See: http://dashboard.opengeoportal.org for an instance of the Data Holdings dashboard.
+
+The data holdings dashboard looks directly at an existing OGP Solr instance. 
+
+Note: This version requires a slightly modified OGP Solr instance which encodes bounding boxes in a separate SpatialRecursivePrefixTreeField
+to take advantage of Solr's heatmap capabilities.
+
+## Usage
+There is also a Usage dashboard that can inspect a Solr instance populated with OGP log data parsed
+by [Logstash](https://www.elastic.co/products/logstash). 
+
+## Metadata Inspector
+A third dashboard, which also points to an existing OGP Solr instance. This dashboard can be used
+to surface issues with discovery metadata.
+
+
+
+
+
 # Banana
 
 The Banana project was forked from [Kibana](https://github.com/elastic/kibana), and works with all kinds of time series

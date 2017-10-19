@@ -238,6 +238,10 @@ module.exports = function (grunt) {
   require('fs')
     .readdirSync(config.srcDir+'/app/panels')
     .forEach(function (panelName) {
+      // skip hidden directories
+      if (panelName.startsWith(".")){
+        return;
+      }
       requireModules.push({
         name: 'panels/'+panelName+'/module',
         exclude: ['app']

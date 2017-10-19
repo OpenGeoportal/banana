@@ -22,7 +22,7 @@
   "laxbreak": true,
   "laxcomma": true,
   "sub": true,
-  "unused": true,
+ // "unused": true,
   "node": true,
 
   "maxlen": 1000,

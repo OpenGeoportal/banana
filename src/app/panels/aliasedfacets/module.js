@@ -94,7 +94,7 @@ define([
 
 
       $scope.add_alias = function (field, alias) {
-        if (typeof alias == "undefined" || alias.length === 0){
+        if (typeof alias === "undefined" || alias.length === 0){
           return;
         }
         var qf = {field: field, alias: alias};
@@ -141,7 +141,7 @@ define([
         $scope.panel_request = request;
 
         var fq = '';
-        if (filterSrv.getSolrFq() && filterSrv.getSolrFq() != '') {
+        if (filterSrv.getSolrFq() && filterSrv.getSolrFq() !== '') {
           fq = '&' + filterSrv.getSolrFq();
         }
         var wt_json = '&wt=json';

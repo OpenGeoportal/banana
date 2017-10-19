@@ -151,22 +151,23 @@ define([
                         var results = [];
                         var features = geojson.features;
                         for (var i = 0; i < features.length; i++) {
-                            if (first && results.length) return;
-                            var f = features[i];
-                            if (pointInPolyBoundingBox({
-                                    type: 'Point',
-                                    coordinates: p
-                                }, f.geometry.coordinates)) {
-                                results.push(f);
-                            }
+                          if (first && results.length) {
+                            return;
+                          }
+                          var f = features[i];
+                          if (pointInPolyBoundingBox({
+                              type: 'Point',
+                              coordinates: p
+                            }, f.geometry.coordinates)) {
+                            results.push(f);
+                          }
                         }
-                        ;
                         return results;
                     };
 
                     var pointInBoundingBox = function (point, bounds) {
                         //bounds = [minx, miny, maxx, maxy]
-                        return !(point.coordinates[0] > bounds[2] || point.coordinates[0] < bounds[0] || point.coordinates[1] > bounds[3] || point.coordinates[1] < bounds[1])
+                        return !(point.coordinates[0] > bounds[2] || point.coordinates[0] < bounds[0] || point.coordinates[1] > bounds[3] || point.coordinates[1] < bounds[1]);
                     };
 
                     var pointInPolyBoundingBox = function (point, polyBounds) {
@@ -199,7 +200,7 @@ define([
                     };
 
                     scope.getScale = function(breaks){
-                        return chroma.scale('Blues').padding([.2, 0]).classes(breaks);
+                        return chroma.scale('Blues').padding([0.2, 0]).classes(breaks);
                     };
 
                     scope.addDataLayer = function () {
@@ -222,7 +223,7 @@ define([
                         function style(feature){
                             return {
                                 weight: 1
-                            }
+                            };
                         }
 
                         function setText(text){
@@ -282,7 +283,7 @@ define([
                         }
 
                         return map;
-                    };
+                    }
 
                     render_panel();
 

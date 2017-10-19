@@ -191,12 +191,12 @@ define([
                         var facets = results.facet_counts;
                         if (_.has(facets, "facet_heatmaps")) {
                           if (_.has(facets.facet_heatmaps, $scope.panel.field)) {
-                            var arr = facets.facet_heatmaps[$scope.panel.field]
+                            var arr = facets.facet_heatmaps[$scope.panel.field];
                             var heatmap = {};
                             for (var i=0; i < arr.length; i = i + 2){
                               heatmap[arr[i]] = arr[i + 1];
                             }
-                            console.log(heatmap);
+                            //console.log(heatmap);
                             $scope.facetHeatmap = heatmap;
                             $scope.$emit('renderData');
 
@@ -321,9 +321,9 @@ define([
                         var cats = 10;
                         var breaks = scope.calculateBreaks(cats);
 
-                        if (breaks.length === 0){
+                        //if (breaks.length === 0){
                             //return;
-                        }
+                        //}
 
 
                         function getColor(count){

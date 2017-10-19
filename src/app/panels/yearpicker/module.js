@@ -249,8 +249,8 @@ function (angular, app, _, moment, kbn, $) {
       return {
         from: from,
         to: to
-      }
-    };
+      };
+    }
 
     function set_time_filter(time) {
       time.type = 'time';

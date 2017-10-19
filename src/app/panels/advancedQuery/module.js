@@ -8,7 +8,6 @@
  one element
  */
 
-var $test;
 
 define([
     'angular',
@@ -155,7 +154,7 @@ define([
         $scope.get_qf = function () {
             // should be able to set query fields with optional boosts in the editor
 
-
+            var qf = $scope.queryFields;
             var qfArr = [];
             _.each(qf, function (item) {
                 qfArr.push(item.field + "^" + item.boost);

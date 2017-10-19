@@ -172,7 +172,7 @@ define([
 
             $scope.isSortedByRank = function(){
                 var sort = $scope.panel.sort;
-                return sort[0] == 'score' && sort[1] == 'desc';
+                return sort[0] === 'score' && sort[1] === 'desc';
             };
 
             $scope.toggle_field = function (field, alias) {
@@ -195,7 +195,7 @@ define([
             };
 
             $scope.add_alias = function (field, alias) {
-                if (typeof alias == "undefined" || alias.length === 0){
+                if (typeof alias === "undefined" || alias.length === 0){
                     return;
                 }
                 var qf = {field: field, alias: alias};
@@ -272,7 +272,7 @@ define([
 
             $scope.get_fq = function () {
                 var fq = '';
-                if (filterSrv.getSolrFq() && filterSrv.getSolrFq() != '') {
+                if (filterSrv.getSolrFq() && filterSrv.getSolrFq() !== '') {
                     fq = '&' + filterSrv.getSolrFq();
                 }
                 return fq;
