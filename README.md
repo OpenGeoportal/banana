@@ -18,7 +18,23 @@ by [Logstash](https://www.elastic.co/products/logstash).
 A third dashboard, which also points to an existing OGP Solr instance. This dashboard can be used
 to surface issues with discovery metadata.
 
+## Connect to your OGP Solr instance
 
+By default, the dashboards point to the Solr instance at http://data.opengeoportal.org. To point to your instance,
+edit these json files in src/app/dashboards:
+
+* default.json
+* ogp_usage.json
+* metadata-ins.json
+
+Edit the values 'solr.server' and 'solr.core_name' to match your instance.
+
+## Quick Start for OGP Dashboards
+* Make your edits.
+* run `npm install` from the root of the project to install javascript dependencies in package.json
+* run the 'build' task with grunt. See the [grunt website](https://gruntjs.com/getting-started) 
+for details.
+* the built page will be accessible at `dist/index.html`
 
 
 
