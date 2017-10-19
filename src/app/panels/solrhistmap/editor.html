@@ -1,0 +1,15 @@
+<div class="row-fluid">
+  <div class="span3">
+    <label class="small">RPT field<tip>Specify a field to show heat grid</tip></label>
+    <input type="text" class="input-small" bs-typeahead="fields.list" ng-model="panel.field" ng-change="set_refresh(true)">
+  </div>
+  <div class="span2">
+    <label class="small">Number of Rows <tip>Specify a number of rows to retrieve the result set.</tip></label>
+    <input class="input-small" type="number" ng-model="panel.max_rows" ng-change="set_refresh(true)">
+  </div>
+</div>
+<div class="span2">
+  <label class="small">Transparency</label>
+  <input type="text" class="input-small" type="number" ng-model="panel.fillerpct" ng-change="set_refresh(true)">
+</div>
+

@@ -1,0 +1,29 @@
+<div ng-controller="countrymap" ng-init="init()">
+  <style>
+
+     div#countrymap {
+      height: 100%;
+      min-height: 256px;
+      position: relative;
+    }
+    div#countrymap .leaflet-top, .leaflet-bottom {
+         z-index: 500;
+     }
+
+    div#countrymap.leaflet-container .leaflet-control-attribution, div#countrymap.leaflet-container .leaflet-control-scale {
+        background: rgba(100, 100, 100, 0.5);
+        color: rgb(100,100,100);
+    }
+
+     div#countrymap.leaflet-container a {
+         color: #006692;
+     }
+      div.map_legend {
+          height: 2em;
+          width: 100%;
+      }
+  </style>
+    <div class="map_legend">{{display.info}}</div>
+  <div data-country-map id="countrymap" ></div>
+
+</div>

@@ -525,7 +525,7 @@ function (angular, app, _, $, kbn) {
           }
         });
 
-        var $tooltip = $('<div>');
+        var $tooltip = $('<div class="flot-label">');
         elem.bind("plothover", function (event, pos, item) {
           if (item) {
             var value = scope.panel.chart === 'bar' ? item.datapoint[1] : item.datapoint[1][0][1];

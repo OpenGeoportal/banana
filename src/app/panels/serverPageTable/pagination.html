@@ -1,0 +1,15 @@
+<div class="row-fluid">
+    <div class="span3">
+        <h6>Show Controls</h6><input type="checkbox" ng-model="panel.paging" ng-checked="panel.paging">
+    </div>
+    <div class="span2">
+        <h6>Overflow</h6>
+        <select class="input-small" ng-model="panel.overflow"
+                ng-options="f.value as f.key for f in [{key:'scroll',value:'height'},{key:'expand',value:'min-height'}]"></select>
+    </div>
+    <div class="span2">
+        <h6>Per Page</h6>
+        <input type="number" class="input-mini" ng-model="panel.size" ng-change="set_refresh(true)">
+    </div>
+</div>
+

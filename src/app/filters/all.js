@@ -42,6 +42,16 @@ define(['angular', 'jquery', 'underscore','showdown'], function(angular, $, _,Sh
     };
   });
 
+  module.filter('uridecode', function() {
+    return function(text) {
+      if(!_.isString(text)) {
+        return text;
+      } else {
+        return decodeURIComponent(text);
+      }
+    };
+  });
+
   module.filter('noXml', function() {
     var noXml = function(text) {
       return _.isString(text)

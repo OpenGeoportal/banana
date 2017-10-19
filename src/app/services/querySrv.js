@@ -14,14 +14,14 @@ function (angular, _, config) {
     _.defaults(dashboard.current.services.query,{
       idQueue : [],
       list : {},
-      ids : [],
+      ids : []
     });
 
     // Defaults for query objects
     var _query = {
       query: '*:*',
       alias: '',
-      pin: false,
+      pin: false
     };
 
     // For convenience
@@ -104,6 +104,8 @@ function (angular, _, config) {
       {
       case 'lucene':
         return sjs.QueryStringQuery(q.query || '*:*');
+        case 'edismax':
+          return sjs.QueryStringQuery(q.query || '*');
       default:
         return _.isUndefined(q.query) ? false : sjs.QueryStringQuery(q.query || '*:*');
       }
@@ -114,25 +116,73 @@ function (angular, _, config) {
       // Need to url encode the query
       var solr_q = 'q=' + encodeURIComponent(self.list[id].query);
 
-      if (dashboard.current.solr.global_params) {
-        solr_q += dashboard.current.solr.global_params;
-      }
+      solr_q = add_globals(solr_q);
 
-      return  solr_q;
+      if (self.list[id].type === 'edismax') {
+        solr_q = add_qf(solr_q, id);
+        solr_q = add_pf_ps(solr_q, id);
+      }
+      return solr_q;
     };
 
-    // used in multiquery case only:  it return the query in form "query1 OR query2 OR ..."
-    this.getORquery = function() {
-      var solr_q = 'q=';
-      for (var key in self.list) {
-        solr_q += encodeURIComponent(self.list[key].query) + " OR ";
-      }
-      solr_q = solr_q.substring(0, solr_q.length - 4);
+    var add_globals = function (solr_q) {
       if (dashboard.current.solr.global_params) {
         solr_q += dashboard.current.solr.global_params;
       }
       return solr_q;
     };
+
+    var add_qf = function (solr_q, id) {
+      var fields = self.list[id].fields;
+      var qfArr = [];
+      _.each(fields, function (item) {
+        qfArr.push(item.field + "^" + item.boost);
+      });
+
+      if (qfArr.length > 0) {
+        solr_q += "&qf=" + encodeURIComponent(qfArr.join(" ")) + "&defType=edismax";
+      }
+
+      return solr_q;
+    };
+
+    var add_pf_ps = function (solr_q, id) {
+      var fields = self.list[id].phrase_fields;
+      var fArr = [];
+      _.each(fields, function (item) {
+        fArr.push(item.field + "^" + item.boost);
+      });
+
+      if (fArr.length > 0) {
+        solr_q += "&pf=" + encodeURIComponent(fArr.join(" "));
+      }
+
+      var slop = self.list[id].phrase_slop;
+      if (slop !== null && isFinite(slop)) {
+        solr_q += "&ps=" + parseInt(slop);
+      }
+
+      return solr_q;
+    };
+
+    // used in multiquery case only:  it return the query in form "query1 OR query2 OR ..."
+    this.getORquery = function() {
+      var solr_q = 'q=';
+      for (var key in self.list)
+        solr_q += encodeURIComponent(self.list[key].query) + " OR ";
+
+      solr_q = solr_q.substring(0, solr_q.length - 4);
+      solr_q = add_globals(solr_q);
+
+      var id = 0;
+      if (self.list[id].type === 'edismax') {
+        solr_q = add_qf(solr_q, id);
+        solr_q = add_pf_ps(solr_q, id);
+
+      }
+
+      return solr_q;
+    }
 
     this.findQuery = function(queryString) {
       return _.findWhere(self.list,{query:queryString});

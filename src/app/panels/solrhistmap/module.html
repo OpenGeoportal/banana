@@ -1,0 +1,22 @@
+<div ng-controller="solrhistmap" ng-init="init()">
+  <style>
+
+     .dashmap {
+      height: 100%;
+      min-height: 500px;
+      position: relative;
+    }
+
+     div#histmap .leaflet-top, .leaflet-bottom {
+         z-index: 500;
+     }
+
+     div.map_legend {
+         height: 2em;
+         width: 100%;
+     }
+  </style>
+    <div class="map_legend">{{display.info}}</div>
+    <div data-hist-map id="histmap" class="dashmap" ></div>
+
+</div>

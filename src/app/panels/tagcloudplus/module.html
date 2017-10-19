@@ -1,0 +1,99 @@
+<div ng-controller='tagcloudplus' ng-cloak ng-init="init()">
+    <style>
+        .tagcloud text {
+            cursor: pointer;
+            -webkit-user-select: none;  /* Chrome all / Safari all */
+            -moz-user-select: none;     /* Firefox all */
+            -ms-user-select: none;      /* IE 10+ */
+            user-select: none;
+        }
+        .filter-panel-filter ul {
+            margin-bottom: 3px;
+        }
+
+        .filter-value {
+            display: inline-block;
+            text-overflow: ellipsis;
+            max-width: 220px;
+            overflow-x: hidden;
+            max-height: 1.2em;
+            vertical-align: top;
+        }
+
+        .filter-tag {
+            margin-left:3px;
+            color: #c8c8c8;
+            background-color: transparent;
+            border: 1px solid #777777;
+        }
+
+        .tag-table {
+            border: 1px solid #444444;
+            overflow: auto;
+            padding: 5px;
+        }
+
+        .tag-table table {
+            width: 100%;
+            text-align: left;
+        }
+
+        .tag-table table th {
+            border-bottom: 1px solid;
+        }
+
+        .tag-table table th:hover, .tag-table table td:hover {
+            font-weight: bolder;
+        }
+
+        .tag-table table th i {
+            float: none;
+            margin-left: 5px;
+        }
+        button.list-toggle {
+            background: transparent none repeat scroll 0 0;
+            border: 1px solid;
+            border-radius: 3px;
+            font-size: 0.9em;
+            padding: 4px 4px 2px;
+            float: right;
+        }
+
+        .tag-table table thead, .tag-table table tbody {
+            width: 100%;
+        }
+    </style>
+    <div>
+        <button class="list-toggle" ng-click="toggleList()" data-title="{{ getMessage() }}" bs-tooltip><i class="pointer" ng-class="{'icon-list': !list.display, 'icon-cloud': list.display}"></i></button>
+
+        <div ng-show="!getListDisplay()" class="animate-if" tagcloud-chart style="overflow:hidden; position:relative">
+        <div class="filters">
+            <span ng-show="filterSrv.ids.length == 0">No filters applied</span>
+            <span ng-repeat="f in fieldFilter(filterSrv.list)" class="label filter-tag pointer" >
+                <span ng-click="flipFilter(f); $event.stopPropagation();"
+                      viewport=".filter-tag"
+                      ng-class="{'icon-plus': (f.mandate == 'must'),
+                          'icon-minus': (f.mandate == 'mustNot')}"></span>
+                <span class="filter-value">{{ display(f) }}</span>
+                <span ng-click="remove(f.id); $event.stopPropagation();"
+                      viewport=".filter-tag"
+                      class="icon-remove"></span>
+            </span>
+        </div>
+    </div>
+
+    <div ng-show="getListDisplay()" class="tag-table animate-if" ng-style="{'max-height': getListHeight()}">
+        <table class="table-striped table-condensed">
+            <thead>
+            <tr><th class="pointer" style="width:80%" ng-click="setOrder('label')">Term<i ng-class="{'icon-chevron-down': list.sort=='label' && !list.reverse, 'icon-chevron-up': list.sort=='label' && list.reverse}"></i></th>
+                <th class="pointer" style="min-width:100px" ng-click="setOrder('data')">Count<i ng-class="{'icon-chevron-down': list.sort=='data' && !list.reverse, 'icon-chevron-up': list.sort=='data' && list.reverse}"></i></th></tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="term in data | orderBy: list.sort: list.reverse">
+                <td ng-click="add_filter_event(term, $event)" style="cursor:pointer">{{term.label}}</td>
+                <td>{{term.data}}</td></tr>
+            </tbody>
+        </table>
+    </div>
+        </div>
+</div>

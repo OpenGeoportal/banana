@@ -1,0 +1,45 @@
+<div ng-controller='simplefiltering' ng-init="init()">
+  <style>
+    .filtering-container {
+      margin-top: 3px;
+    }
+    .filter-panel-filter ul {
+      margin-bottom: 3px;
+    }
+
+    .filter-value {
+      display: inline-block;
+      text-overflow: ellipsis;
+      max-width: 220px;
+      overflow-x: hidden;
+      max-height: 1.2em;
+      vertical-align: top;
+    }
+
+    .filter-tag {
+      margin-left:3px;
+      color: #c8c8c8;
+      background-color: transparent;
+      border: 1px solid #777777;
+      font-size: 15px;
+    }
+  </style>
+
+  <div class='filtering-container'>
+    <span ng-show="filterSrv.ids.length == 0">
+      <h5>No filters applied</h5>
+    </span>
+
+    <span ng-repeat="f in filterSrv.list" class="label filter-tag pointer"
+          data-html="true" data-trigger="click focus" bs-tooltip data-title="{{details(f)}}">
+                    <span ng-hide="f.field == 'Year'" ng-click="flipFilter(f); $event.stopPropagation();"
+                          viewport=".filter-tag"
+                          ng-class="{'icon-plus': (f.mandate == 'must'),
+                              'icon-minus': (f.mandate == 'mustNot')}"></span>
+                    <span class="filter-value">{{ display(f) }}</span>
+                    <span ng-hide="f.field == 'Year'" ng-click="remove(f.id, $event); $event.stopPropagation();"
+                          viewport=".filter-tag"
+                          class="icon-remove"></span>
+    </span>
+  </div>
+</div>
